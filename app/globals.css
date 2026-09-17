@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #1e293b;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --primary: #1d4ed8;
+  --red: #dc2626;
+  --amber: #d97706;
+  --green: #16a34a;
+  --muted: #64748b;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.risk-green { background: #f0fdf4; border-left: 4px solid var(--green); }
+.risk-amber { background: #fffbeb; border-left: 4px solid var(--amber); }
+.risk-red { background: #fef2f2; border-left: 4px solid var(--red); }
+
+.badge-green { background: #dcfce7; color: #166534; }
+.badge-amber { background: #fef3c7; color: #92400e; }
+.badge-red { background: #fee2e2; color: #991b1b; }

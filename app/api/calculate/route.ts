@@ -81,6 +81,26 @@ export async function POST(request: NextRequest) {
       // Continue even if save fails
     }
     
+    // Auto-notify Zalo for RED/AMBER
+    if (quotationId && (riskLevel === 'RED' || riskLevel === 'AMBER')) {
+      try {
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://trangia-quotation-pmrawch76-trangiafurnitures.vercel.app'
+        fetch(`${baseUrl}/api/notify/zalo`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            quotation_id: quotationId,
+            customer_type: input.customer_type,
+            contract_value: input.contract_value,
+            margin_mid: margin.mid,
+            risk_level: riskLevel,
+            product_type: input.product_type,
+            justification: ''
+          })
+        }).catch(() => {}) // fire and forget
+      } catch (e) {}
+    }
+
     return NextResponse.json({
       id: quotationId,
       input,
@@ -97,3 +117,5 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
+
+// Auto-notify Zalo for RED/AMBER (appended)

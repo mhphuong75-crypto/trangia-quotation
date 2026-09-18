@@ -122,7 +122,7 @@ ON CONFLICT (param_name) DO NOTHING;
 
 -- Seed users
 INSERT INTO app_users (email, full_name, role) VALUES
-  ('ceo@trangia.vn', 'CEO - Phương', 'ceo'),
+  ('ceo@trangia.vn', 'CEO', 'ceo'),
   ('tinh_gia@trangia.vn', 'Giám đốc Tính giá', 'gd_tinh_gia'),
   ('du_an@trangia.vn', 'Giám đốc Dự án', 'gd_du_an'),
   ('tai_chinh@trangia.vn', 'Giám đốc Tài chính', 'gd_tai_chinh'),

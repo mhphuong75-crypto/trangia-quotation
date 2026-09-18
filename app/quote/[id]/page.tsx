@@ -26,7 +26,7 @@ export default function QuotationDetailPage() {
       await fetch('/api/quotations/approve', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, action, approved_by: 'CEO - Phương', reason: note })
+        body: JSON.stringify({ id, action, approved_by: 'CEO', reason: note })
       })
       const res = await fetch('/api/quotations')
       const data = await res.json()

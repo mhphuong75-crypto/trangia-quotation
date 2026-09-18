@@ -387,6 +387,25 @@ export default function NewQuotationPage() {
 
         {error && <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700">❌ {error}</div>}
 
+        {/* Zalo share for RED/AMBER */}
+        {(isRed || result.risk_level === 'AMBER') && result.id && (
+          <div className="bg-slate-50 rounded-xl border border-slate-200 p-4">
+            <div className="text-sm font-medium text-slate-700 mb-2">📱 Gửi cho CEO qua Zalo</div>
+            <div className="text-xs text-slate-500 mb-3">Copy tin nhắn bên dưới và paste vào Zalo cho CEO:</div>
+            <div className="bg-white rounded-lg border border-slate-200 p-3 text-xs text-slate-700 font-mono leading-relaxed select-all">
+              {`${isRed ? '🔴 BÁO ĐỘNG ĐỎ' : '🟡 BÁO ĐỘNG VÀNG'} — Cần phê duyệt báo giá\n\nLoại KH: ${form.customer_type}\nGiá trị: ${contractValueM}M VND\nMargin: ${(result.margin.mid * 100).toFixed(1)}%\n\nXem & duyệt:\nhttps://trangia-quotation-pmrawch76-trangiafurnitures.vercel.app/quote/${result.id}`}
+            </div>
+            <button
+              onClick={() => {
+                const text = `${isRed ? '🔴 BÁO ĐỘNG ĐỎ' : '🟡 BÁO ĐỘNG VÀNG'} — Cần phê duyệt báo giá\n\nLoại KH: ${form.customer_type}\nGiá trị: ${contractValueM}M VND\nMargin: ${(result.margin.mid * 100).toFixed(1)}%\n\nXem & duyệt:\nhttps://trangia-quotation-pmrawch76-trangiafurnitures.vercel.app/quote/${result.id}`
+                navigator.clipboard.writeText(text).then(() => alert('✅ Đã copy! Paste vào Zalo cho CEO'))
+              }}
+              className="mt-2 w-full bg-blue-50 text-blue-700 border border-blue-200 py-2 rounded-lg text-sm hover:bg-blue-100 font-medium">
+              📋 Copy tin nhắn
+            </button>
+          </div>
+        )}
+
         {/* Actions */}
         <div className="flex gap-3">
           <button onClick={() => { setStep(1); setResult(null); setShowAI(false); setJustification('') }}

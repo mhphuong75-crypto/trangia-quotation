@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
+// Force all pages to be dynamic — never serve cached version
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: 'Trần Gia — Hệ thống báo giá',
   description: 'Smart Quotation System — Module A: Cost Gate',
